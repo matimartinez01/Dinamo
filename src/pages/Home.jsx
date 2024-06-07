@@ -46,6 +46,15 @@ const Home = () => {
         });
       };
 
+
+      let whatsapp = ""
+
+      if (window.innerWidth > 768) {
+        whatsapp = "https://web.whatsapp.com/send?phone=543516413560&text="
+      }else{
+        whatsapp = "https://wa.me/543516413560"
+      }
+
       const [legendNombre, setLegendNombre] = useState('');
       const [legendApellido, setLegendApellido] = useState('');
       const [legendEmail, setLegendEmail] = useState('');
@@ -417,7 +426,7 @@ const Home = () => {
                         <LogoYoutube color={'#FFFFFF'} title={""} height="50px" width="50px"/></a>
                         <a href="https://www.linkedin.com/company/dinamoempresas/?originalSubdomain=ar" target="_blank" className="hover:scale-110 hover:shadow-2xl">
                         <LogoLinkedin color={'#FFFFFF'} title={""} height="50px" width="50px"/></a>
-                        <a href="https://web.whatsapp.com/send?phone=543516413560&text=" target="_blank" className="hover:scale-110">
+                        <a href={whatsapp} target="_blank" className="hover:scale-110">
                         <LogoWhatsapp color={'#FFFFFF'} title={""} height="50px" width="50px"/></a>
                     </div>  
                 </div>

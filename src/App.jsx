@@ -5,9 +5,10 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Galeria from './utils/Galeria'
-
 function App() {
   const [count, setCount] = useState(0)
+
+  
 
   return (
     <>

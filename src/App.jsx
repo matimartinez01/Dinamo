@@ -5,6 +5,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Galeria from './utils/Galeria'
+import { HashRouter } from 'react-router-dom'
+
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -12,12 +15,12 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
+    <HashRouter>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path='/clientes' element={<Galeria/>}/>
     </Routes>
-    </BrowserRouter>
+    </HashRouter>
     </>
   )
 }

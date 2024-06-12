@@ -163,7 +163,7 @@ const Home = () => {
 
         <main>
             
-            <section className="w-full h-screen bg-gray-200" id="inicio">
+            <section className="w-full h-screen bg-gray-200">
             <header className="w-full mb-[100px] h-[60px] flex flex-row items-center justify-between bg-gray-200 md:h-[130px] fixed z-50">
             <img src={logo} alt="logo" className="w-[100px] h-2/3 ml-[20px] md:m-[20px] md:w-[250px]"/>
             {!showMenu && (

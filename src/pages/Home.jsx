@@ -1,6 +1,6 @@
 import logo from "../utils/Logo Academia Dínamo.png"
 import Banner from "../utils/20240424_142911.jpg"
-
+import Hamburger from "hamburger-react"
 import ReactDOM from 'react-dom'
 
 
@@ -17,7 +17,6 @@ import { LogoInstagram, LogoWhatsapp, LogoLinkedin, LogoYoutube, LogoFacebook } 
 
 
 
-import { Twirl as Hamburger } from 'hamburger-react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import emailjs from 'emailjs-com';
@@ -27,7 +26,18 @@ import { NavLink } from 'react-router-dom'
 
 
 
+
 const Home = () => {
+
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const handleToggle = (toggled) => {
+        setMenuVisible(toggled);
+    };
+
+    const handleClose = () => {
+        setMenuVisible(false);
+    };
 
     
 
@@ -44,8 +54,18 @@ const Home = () => {
           top: offsetPosition,
           behavior: 'smooth'
         });
+
+        handleClose()
       };
 
+      let showMenu = false;
+
+
+      if (window.innerWidth < 768) {
+        showMenu = true;
+      }else{
+        showMenu = false;
+      }
 
       let whatsapp = ""
 
@@ -111,9 +131,18 @@ const Home = () => {
             Swal.fire({
                 icon: "success",
                 title: "Consulta enviada!",
-                text: "Something went wrong!",
               });
           })
+          .then(() => {
+            setFormulario({
+              nombre: '',
+              apellido: '',
+              email: '',
+              curso: '',
+              consulta: '',
+            });
+          })
+          
           .catch((error) => {
             console.error('Error al enviar el correo:', error);
           });
@@ -126,20 +155,40 @@ const Home = () => {
         e.preventDefault();
       }
 
+    
+    
 
 
     return (
-     
 
         <main>
-            <section className="w-full h-screen bg-gray-200">
+            
+            <section className="w-full h-screen bg-gray-200" id="inicio">
             <header className="w-full mb-[100px] h-[60px] flex flex-row items-center justify-between bg-gray-200 md:h-[130px] fixed z-50">
-            <img src={logo} alt="logo" className="w-[100px] h-2/3 md:m-[20px] md:w-[250px]"/>
+            <img src={logo} alt="logo" className="w-[100px] h-2/3 ml-[20px] md:m-[20px] md:w-[250px]"/>
+            {!showMenu && (
                 <div className="flex flex-row items-center text-sm mr-2 gap-x-[15px] lg:mr-[20px] md:gap-x-[50px] md:text-lg md:mr-4">
                     <a href="#quienes-somos" onClick={(e) => handleScroll(e, 'quienes-somos')} className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">QUIENES SOMOS</a>
                     <a href="#cursos" onClick={(e) => handleScroll(e, 'cursos')} className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">CURSOS</a>
                     <NavLink to="/clientes" className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">CLIENTES</NavLink>
+                    
+                </div>)
+            }
+
+                {showMenu && (
+                <div>
+                <Hamburger size={20} label="Show menu" color="#2f2c79" onToggle={handleToggle} toggled={menuVisible}/>
+                    {menuVisible && (
+                        <div className="menu bg-gray-300 text-blue-900 font-bold w-2/5 h-[100vh] fixed top-0 right-0 flex flex-col items-left p-2 gap-y-4">
+                            <Hamburger size={20} label="Hide menu" color="#2f2c79" onToggle={handleClose} toggled={menuVisible}/>
+                            <a href="#quienes-somos" onClick={(e) => handleScroll(e, 'quienes-somos')} className="font-bold">QUIENES SOMOS</a>
+                            <a href="#cursos" onClick={(e) => handleScroll(e, 'cursos')} className="font-bold">CURSOS</a>
+                            <NavLink to="/clientes" className="font-bold">CLIENTES</NavLink>
+                        </div>
+                    )}  
                 </div>
+                )}
+
             </header>
 
             <div className="relative w-full h-[100vh]  gap-y-[10px] flex flex-col p-2 lg:h-[78vh] md:gap-y-[10px]">
@@ -243,6 +292,8 @@ const Home = () => {
 
                 </div>
 
+                
+
                 <div className="w-full min-h-[90vh]">
                     <div className="w-full mt-[50px] flex flex-col justify-center items-center gap-y-[30px] md:flex-row md:flex-wrap md:gap-x-[50px] mb-10">
 
@@ -275,7 +326,7 @@ const Home = () => {
                             <p className="text-justify md:text-lg lg:text-xl font-semibold">Se desarrollará la visión, misión y valores de la organización.</p>
                             <p className="text-justify md:text-lg lg:text-xl font-semibold">Se establecerán objetivos y también se diseñará un tablero de mando para monitorear y evaluar el progreso de la
                             estrategia.</p>
-                            <a href="https://tallerpyme.cms.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
+                            <a href="https://tallerpyme.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
                         </div>
 
                         <div id="modelado" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
@@ -408,6 +459,8 @@ const Home = () => {
                              onClick={sendEmail}>ENVIAR</button>
                     </form>
                 </div>
+
+                
 
 
                 <footer className='w-full bg-gray-700 py-4 flex flex-col items-center px-2 text-white'>

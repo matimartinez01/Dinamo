@@ -91,7 +91,7 @@ const Galeria = () => {
         <header className="w-full mb-[100px] h-[60px] flex flex-row items-center justify-between bg-gray-200 md:h-[130px] fixed z-50">
         <img src={logo} alt="logo" className="w-[100px] h-2/3 md:m-[20px] md:w-[250px]"/>
             <div className="flex flex-row items-center text-sm mr-2 gap-x-[15px] lg:mr-[20px] md:gap-x-[50px] md:text-lg md:mr-4">
-                <NavLink to="/" className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">INICIO</NavLink>
+                <NavLink to="/#inicio" className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">INICIO</NavLink>
                 <a href="#" className="font-bold text-orange-500 underline">CLIENTES</a>
             </div>
         </header>

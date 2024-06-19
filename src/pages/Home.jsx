@@ -271,7 +271,7 @@ const Home = () => {
 
                             <a href="#despachante" onClick={(e) => handleScroll(e, 'despachante')} className="flex flex-col bg-blue-900 w-11/12 mx-auto p-2 rounded-xl md:w-2/3 lg:w-2/5 hover:scale-105 hover:cursor-pointer hover:bg-blue-600">
                                 <h2 className="text-xl font-bold text-center text-white">Taller de Entrenamiento en Ventas</h2>
-                                <p className="text-center text-white text-lg italic md:text-xl md:font-semibold">“De Despachante y Vendedor”</p>
+                                <p className="text-center text-white text-lg italic md:text-xl md:font-semibold">“De Despachante a Vendedor”</p>
                             </a>
 
                             <a href="#estrategia" onClick={(e) => handleScroll(e, 'estrategia')} className="flex flex-col bg-blue-900 w-11/12 mx-auto p-2 rounded-xl md:w-2/3 lg:w-2/5 hover:scale-105 hover:cursor-pointer hover:bg-blue-600">

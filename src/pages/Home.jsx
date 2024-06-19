@@ -1,4 +1,4 @@
-import logo from "../utils/Logo Academia Dínamo.png"
+import logo from "../utils/Clientes/DINAMO-academia (1) (1).png"
 import Banner from "../utils/20240424_142911.jpg"
 import Hamburger from "hamburger-react"
 import ReactDOM from 'react-dom'
@@ -21,7 +21,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Navigate, useNavigate } from 'react-router-dom'
 
 
 
@@ -57,6 +57,26 @@ const Home = () => {
 
         handleClose()
       };
+
+      const navigate = useNavigate();
+
+
+
+      function handleScrollToTop() {
+        window.scrollTo(0, 0);
+        navigate('/clientes');
+      }
+
+
+
+      
+      function ClientesPage() {
+        useEffect(() => {
+          handleScrollToTop();
+        }, []);
+      }
+
+    
 
       let showMenu = false;
 
@@ -165,13 +185,13 @@ const Home = () => {
             
             <section className="w-full h-screen bg-gray-200">
             <header className="w-full mb-[100px] h-[60px] flex flex-row items-center justify-between bg-gray-200 md:h-[130px] fixed z-50">
-            <img src={logo} alt="logo" className="w-[100px] h-2/3 ml-[20px] md:m-[20px] md:w-[250px]"/>
+            <a href="#inicio" onClick={(e) => handleScroll(e, 'inicio')}><img src={logo} alt="logo" className="w-[100px] h-2/3 ml-[20px] md:m-[20px] md:w-[250px]"/></a>
             {!showMenu && (
                 <div className="flex flex-row items-center text-sm mr-2 gap-x-[15px] lg:mr-[20px] md:gap-x-[50px] md:text-lg md:mr-4">
                     <a href="#quienes-somos" onClick={(e) => handleScroll(e, 'quienes-somos')} className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">QUIENES SOMOS</a>
                     <a href="#cursos" onClick={(e) => handleScroll(e, 'cursos')} className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">CURSOS</a>
-                    <NavLink to="/clientes" className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">CLIENTES</NavLink>
-                    
+                    <a href="#contactanos" onClick={(e) => handleScroll(e, 'contactanos')} className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">CONTÁCTANOS</a>
+                    <a onClick={handleScrollToTop} className="font-bold text-blue-800 hover:cursor-pointer hover:underline hover:text-orange-500 hover:scale-105">CLIENTES</a>
                 </div>)
             }
 
@@ -183,7 +203,8 @@ const Home = () => {
                             <Hamburger size={20} label="Hide menu" color="#2f2c79" onToggle={handleClose} toggled={menuVisible}/>
                             <a href="#quienes-somos" onClick={(e) => handleScroll(e, 'quienes-somos')} className="font-bold">QUIENES SOMOS</a>
                             <a href="#cursos" onClick={(e) => handleScroll(e, 'cursos')} className="font-bold">CURSOS</a>
-                            <NavLink to="/clientes" className="font-bold">CLIENTES</NavLink>
+                            <a href="#contactanos" onClick={(e) => handleScroll(e, 'contactanos')} className="font-bold">CONTÁCTANOS</a>
+                            <a onClick={handleScrollToTop} className="font-bold">CLIENTES</a>
                         </div>
                     )}  
                 </div>
@@ -191,11 +212,11 @@ const Home = () => {
 
             </header>
 
-            <div className="relative w-full h-[100vh]  gap-y-[10px] flex flex-col p-2 lg:h-[78vh] md:gap-y-[10px]">
+            <div className="relative w-full h-[100vh]  gap-y-[10px] flex flex-col p-2 lg:h-[78vh] md:gap-y-[10px]" id="inicio">
                     <img src={Banner} alt="banner" className="w-full object-cover h-[100vh] rounded-xl mt-[60px] opacity-30 md:mt-[150px] md:h-[80vh] mb-[40px]"/>
-                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center w-11/12 mx-auto lg:w-1/2 lg:mx-[50px] lg:mt-[300px]">
-                        <h1 className=" items-center text-4xl font-extrabold text-center text-blue-900 w-full md:text-7xl md:mb-[10px]">TRANSFORMAMOS PERSONAS</h1>
-                        <p className="text-center text-2xl italic text-blue-900 font-semibold w-full mb-[10px] md:mb-[30px] md:text-4xl">Capacitamos a quienes trabajan en las PyMEs para que desarrollen sus competencias y puedan crecer</p>
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center w-11/12 mx-auto lg:w-1/2 lg:mx-[50px] lg:mt-[300px] 3xl:w-2/5">
+                        <h1 className=" items-center text-4xl font-extrabold text-center text-blue-900 w-full md:text-5xl md:mb-[10px]">TRANSFORMAMOS EL APRENDIZAJE EN ACCIÓN</h1>
+                        <p className="text-center text-2xl italic text-blue-900 font-semibold w-full mb-[10px] md:mb-[30px]">Capacitamos a quienes trabajan en las PyMEs para que desarrollen sus competencias y puedan crecer</p>
                     </div>
                 </div>
             </section>
@@ -297,90 +318,106 @@ const Home = () => {
                 <div className="w-full min-h-[90vh]">
                     <div className="w-full mt-[50px] flex flex-col justify-center items-center gap-y-[30px] md:flex-row md:flex-wrap md:gap-x-[50px] mb-10">
 
-                        <div id="jefe-gerente" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[854px] lg:gap-y-[10px] xl:min-h-[630px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-4xl">Programa de Formación Gerencial</h2>
-                            <p className="text-center text-xl italic text-blue-900 font-semibold mb-[10px] md:text-2xl">"De Jefe a Gerente"</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Es habitual encontrar personas en las PyMEs que han llegado a convertirse en mandos medios por su gran capacidad técnica, por conocimientos, por compromiso y
-                            por su alto nivel de responsabilidad.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Pero una vez en el puesto, se encuentran con problemáticas para las que no han sido preparados.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Por eso nace "De Jefe a Gerente", el único programa pensado para mandos medios de PyMEs, diseñado por especialistas en PyMEs</p>
-                            <a href="https://de-jefe-a-gerente.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
+                        <div id="jefe-gerente" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[854px] xl:w-1/4 xl:min-h-[832px] 2xl:w-1/5 2xl:min-h-[860px] 3xl:min-h-[700px]">
+                            <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[750px] xl:min-h-[726px] 2xl:min-h-[754px] 3xl:min-h-[610px]">
+                                <h2 className="text-2xl font-bold text-center text-blue-900 md:text-3xl">Programa de Formación Gerencial</h2>
+                                <p className="text-center text-xl italic text-blue-900 font-semibold mb-[10px] md:text-2xl">"De Jefe a Gerente"</p>
+                                <p className="text-justify md:text-lg font-semibold">Es habitual encontrar personas en las PyMEs que han llegado a convertirse en mandos medios por su gran capacidad técnica, por conocimientos, por compromiso y
+                                por su alto nivel de responsabilidad.</p>
+                                <p className="text-justify md:text-lg font-semibold">Pero una vez en el puesto, se encuentran con problemáticas para las que no han sido preparados.</p>
+                                <p className="text-justify md:text-lg font-semibold">Por eso nace "De Jefe a Gerente", el único programa pensado para mandos medios de PyMEs, diseñado por especialistas en PyMEs</p>
+                            </div>
+                            <a href="https://de-jefe-a-gerente.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl  lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
                         </div>
 
-                        <div id="despachante" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[854px] lg:gap-y-[10px] xl:min-h-[630px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-4xl">Taller de Entrenamiento en Ventas</h2>
+                        <div id="despachante" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[854px] xl:w-1/4  xl:min-h-[832px] 2xl:w-1/5 2xl:min-h-[860px] 3xl:min-h-[700px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[750px] xl:min-h-[726px] 2xl:min-h-[754px] 3xl:min-h-[610px]">
+                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-3xl">Taller de Entrenamiento en Ventas</h2>
                             <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“De Despachante y Vendedor”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">En las PyMEs quienes ocupan puestos en ventas suelen ser personas con gran actitud, atentas y serviciales, pero
+                            <p className="text-justify md:text-lg font-semibold">En las PyMEs quienes ocupan puestos en ventas suelen ser personas con gran actitud, atentas y serviciales, pero
                             carecen de formación y entrenamiento para vender.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">El mercado se ha vuelta competitivo y los clientes exigentes y eso requiere manejar técnicas de ventas modernas,
+                            <p className="text-justify md:text-lg font-semibold">El mercado se ha vuelta competitivo y los clientes exigentes y eso requiere manejar técnicas de ventas modernas,
                             conocer sobre neuromarketing, tener escucha activa, saber manejar sistemas de seguimiento a clientes y cerrar ventas.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Nuestro programa “De Despachante a Vendedor” entrena para convertir personas en profesionales de la venta.</p>
+                            <p className="text-justify md:text-lg font-semibold">Nuestro programa “De Despachante a Vendedor” entrena para convertir personas en profesionales de la venta.</p>
+                        </div>   
                             <a href="https://de-despachante-a-vendedor.webnode.page/" target="_blank" className="text-center text-white bg-orange-600 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-orange-500">+ INFO</a>
                         </div>
 
-                        <div id="estrategia" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-4xl">Taller para Dueños de PyMEs</h2>
+                        <div id="estrategia" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[832px] 2xl:w-1/5 2xl:min-h-[860px] 3xl:min-h-[700px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[726px] 2xl:min-h-[754px] 3xl:min-h-[610px]">
+                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-3xl">Taller para Dueños de PyMEs</h2>
                             <p className="text-center text-xl italic text-blue-900 font-semibold mb-[10px] md:text-2xl ">“Diseñando la Estrategia de la Empresa”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Los Dueños de PyMEs necesitan definir claramente lo que la empresa debe hacer, cuál será su ventaja competitiva,
+                            <p className="text-justify md:text-lg font-semibold">Los Dueños de PyMEs necesitan definir claramente lo que la empresa debe hacer, cuál será su ventaja competitiva,
                             definir claramente sus objetivos y metas.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Se desarrollará la visión, misión y valores de la organización.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Se establecerán objetivos y también se diseñará un tablero de mando para monitorear y evaluar el progreso de la
+                            <p className="text-justify md:text-lg font-semibold">Se desarrollará la visión, misión y valores de la organización.</p>
+                            <p className="text-justify md:text-lg font-semibold">Se establecerán objetivos y también se diseñará un tablero de mando para monitorear y evaluar el progreso de la
                             estrategia.</p>
+                        </div>    
                             <a href="https://tallerpyme.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
                         </div>
 
-                        <div id="modelado" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-4xl">Taller para Dueños de PyMEs</h2>
+                        <div id="modelado" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[684px] 2xl:w-1/5 2xl:min-h-[860px] 3xl:min-h-[700px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[578px] 2xl:min-h-[754px] 3xl:min-h-[610px]">
+                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-3xl">Taller para Dueños de PyMEs</h2>
                             <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“Modelando mi Negocio”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Ese modelado brinda una estructura visual sencilla y comprensible para organizar y analizar los componentes
+                            <p className="text-justify md:text-lg font-semibold">Ese modelado brinda una estructura visual sencilla y comprensible para organizar y analizar los componentes
                             clave del negocio.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Permite a las personas obtener una visión holística y clara de cómo funciona su empresa, explorando nuevas ideas y oportunidades de negocio,
+                            <p className="text-justify md:text-lg font-semibold">Permite a las personas obtener una visión holística y clara de cómo funciona su empresa, explorando nuevas ideas y oportunidades de negocio,
                             desafiando las suposiciones existentes y buscando formas de mejorar o adaptar el modelo de negocio actual a las condiciones cambiantes del mercado.</p>
+                        </div>    
                             <a href="https://modelando-mi-negocio.webnode.page/" target="_blank" className="text-center text-white bg-orange-600 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-orange-500">+ INFO</a>
                         </div>
 
-                        <div id="sentido" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-4xl">Taller para Dueños de PyMEs</h2>
+                        <div id="sentido" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[684px] 2xl:w-1/5 2xl:min-h-[736px] 3xl:min-h-[630px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[578px] 2xl:min-h-[630px] 3xl:min-h-[522px]">
+                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-3xl">Taller para Dueños de PyMEs</h2>
                             <p className="text-center text-xl italic text-blue-900 font-semibold mb-[10px] md:text-2xl ">“Encontrando el Sentido que me Impulsa”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">A lo largo de nuestros años de experiencia de trabajar con Dueños de PyMEs, notamos que pierden la pasión, esa
+                            <p className="text-justify md:text-lg font-semibold">A lo largo de nuestros años de experiencia de trabajar con Dueños de PyMEs, notamos que pierden la pasión, esa
                             llama interna que los llevó a crear una empresa.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">En este taller, te enseñaremos cómo descubrir tu propósito y utilizarlo para guiar a tu empresa hacia el éxito.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Te ayudaremos a conectar con tu pasión, identificar tus valores y crear una visión personal y para tu negocio que te
+                            <p className="text-justify md:text-lg font-semibold">En este taller, te enseñaremos cómo descubrir tu propósito y utilizarlo para guiar a tu empresa hacia el éxito.</p>
+                            <p className="text-justify md:text-lg font-semibold">Te ayudaremos a conectar con tu pasión, identificar tus valores y crear una visión personal y para tu negocio que te
                             inspire a ti y a tu equipo.</p>
+                        </div>    
                             <a href="https://encontrando-el-sentido-que-me-impulsa.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
                         </div>
 
-                        <div id="conectando" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-4xl">Outdoor PyME</h2>
+                        <div id="conectando" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[684px] 2xl:w-1/5 2xl:min-h-[736px] 3xl:min-h-[630px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[578px] 2xl:min-h-[630px] 3xl:min-h-[522px]">
+                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-3xl">Outdoor PyME</h2>
                             <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“Aprender conectando”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Las experiencias “fuera de oficina” pueden crear un fuerte sentido de pertenencia y comunidad entre los empleados,
+                            <p className="text-justify md:text-lg font-semibold">Las experiencias “fuera de oficina” pueden crear un fuerte sentido de pertenencia y comunidad entre los empleados,
                             lo que puede mejorar la moral y la retención del personal.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Los juegos y dinámicas vivenciales junto a la exposición a la naturaleza pueden mejorar el estado de ánimo, aumentar
+                            <p className="text-justify md:text-lg font-semibold">Los juegos y dinámicas vivenciales junto a la exposición a la naturaleza pueden mejorar el estado de ánimo, aumentar
                             los niveles de energía y promover una sensación de bienestar general.</p>
+                        </div>    
                             <a href="https://aprender-conectando.webnode.page/" target="_blank" className="text-center text-white bg-orange-600 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-orange-500">+ INFO</a>
                         </div>
 
-                        <div id="liderazgo" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-4xl">Curso de Liderazgo</h2>
+                        <div id="liderazgo" className="w-5/6 bg-blue-100 p-2 flex flex-col rounded-xl border-2 border-blue-900 shadow-lg shadow-blue-300 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[680px] 2xl:w-1/5 2xl:min-h-[736px] 3xl:min-h-[630px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[574px] 2xl:min-h-[630px] 3xl:min-h-[522px]">
+                            <h2 className="text-2xl font-bold text-center text-blue-900 md:text-3xl">Curso de Liderazgo</h2>
                             <p className="text-center text-xl italic text-blue-900 font-semibold mb-[10px] md:text-2xl ">“Formando Líderes”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Desarrollar y conducir en forma eficiente al personal se volvió para las organizaciones un elemento sustancial para
+                            <p className="text-justify md:text-lg font-semibold">Desarrollar y conducir en forma eficiente al personal se volvió para las organizaciones un elemento sustancial para
                             lograr que su capital humano sea hoy una ventaja competitiva en el mercado.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">El valor de esta propuesta se sostiene en el rol clave que en la actualidad tienen los mandos medios dentro de las
+                            <p className="text-justify md:text-lg font-semibold">El valor de esta propuesta se sostiene en el rol clave que en la actualidad tienen los mandos medios dentro de las
                             organizaciones.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">En el curso se abordarán los conceptos y herramientas necesarias para que los participantes puedan
+                            <p className="text-justify md:text-lg font-semibold">En el curso se abordarán los conceptos y herramientas necesarias para que los participantes puedan
                             desarrollar al máximo sus competencias.</p>
+                        </div>    
                             <a href="https://curso-de-liderazgo.webnode.page/" target="_blank" className="text-center text-white bg-blue-900 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-blue-600">+ INFO</a>
                         </div>
 
-                        <div id="ventas" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] lg:gap-y-[10px] xl:min-h-[630px] 2xl:min-h-[550px] 3xl:min-h-[520px]">
-                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-4xl">Curso Integral de Ventas</h2>
+                        <div id="ventas" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[772px] xl:w-1/4 xl:min-h-[680px] 2xl:w-1/5 2xl:min-h-[736px] 3xl:min-h-[630px]">
+                        <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[600px] xl:min-h-[574px] 2xl:min-h-[630px] 3xl:min-h-[522px]">
+                            <h2 className="text-2xl font-bold text-center text-orange-700 md:text-3xl">Curso Integral de Ventas</h2>
                             <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“Vendedor Efectivo”</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Este curso de entrenamiento brinda los conocimientos y herramientas para que los vendedores tengan éxito en su
+                            <p className="text-justify md:text-lg font-semibold">Este curso de entrenamiento brinda los conocimientos y herramientas para que los vendedores tengan éxito en su
                             gestión de ventas.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">Mediante una metodología teórico-práctica podrán analizar experiencias personales, incorporando nuevos aprendizajes
+                            <p className="text-justify md:text-lg font-semibold">Mediante una metodología teórico-práctica podrán analizar experiencias personales, incorporando nuevos aprendizajes
                             que les permitirán tener una gran performance.</p>
-                            <p className="text-justify md:text-lg lg:text-xl font-semibold">El curso tendrá un énfasis práctico, presentando los contenidos por medio de ejercicios individuales y grupales
+                            <p className="text-justify md:text-lg font-semibold">El curso tendrá un énfasis práctico, presentando los contenidos por medio de ejercicios individuales y grupales
                             que ayudarán a afianzar los conocimientos.</p>
+                        </div>    
                             <a href="https://cefor80.webnode.page/" target="_blank" className="text-center text-white bg-orange-600 p-2 w-2/5 mx-auto rounded-xl font-bold mt-4 md:text-xl lg:mt-6 lg:text-2xl hover:scale-105 hover:cursor-pointer hover:bg-orange-500">+ INFO</a>
                         </div>
 

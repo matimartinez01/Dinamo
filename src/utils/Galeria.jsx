@@ -68,8 +68,8 @@ import cliente67 from "../utils/Clientes/Vectus.png"
 import cliente68 from "../utils/Clientes/Zou Packaging.jpg"
 import cliente69 from "../utils/Clientes/Zárate Materiales.png"
 
-import logo from "../utils/Logo Academia Dínamo.png"
-import { NavLink } from 'react-router-dom'
+import logo from "../utils/Clientes/DINAMO-academia (1) (1).png"
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import ReactDOM from 'react-dom'
 
@@ -80,6 +80,30 @@ import { LogoInstagram, LogoWhatsapp, LogoLinkedin, LogoYoutube, LogoFacebook } 
 
 const Galeria = () => {
 
+    const handleScroll = (event, id) => {
+        event.preventDefault();
+        const offsetDesktop = 130; // Ajusta esto según la altura de tu encabezado en escritorio
+        const offsetMobile = 60; // Ajusta esto según la altura de tu encabezado en móvil
+        const offset = window.innerWidth < 768 ? offsetMobile : offsetDesktop;
+        const element = document.getElementById(id);
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+      };
+
+      const navigate = useNavigate();
+
+      function handleScrollToTop() {
+        window.scrollTo(0, 0);
+        navigate('/');
+      }
+
+
     const imagenes = [cliente1, cliente2, cliente3, cliente4, cliente5, cliente6, cliente7, cliente8, cliente9, cliente10, cliente11, cliente12, cliente14,
         cliente15, cliente16, cliente17, cliente18, cliente19, cliente20, cliente21, cliente22, cliente23, cliente24, cliente25, cliente26, cliente27, cliente28, cliente29,
         cliente30, cliente31, cliente32, cliente33, cliente34, cliente35, cliente36, cliente37, cliente38, cliente39, cliente40, cliente41, cliente42, cliente43, cliente44,
@@ -89,15 +113,15 @@ const Galeria = () => {
     return (
         <div>
         <header className="w-full mb-[100px] h-[60px] flex flex-row items-center justify-between bg-gray-200 md:h-[130px] fixed z-50">
-        <img src={logo} alt="logo" className="w-[100px] h-2/3 md:m-[20px] md:w-[250px]"/>
-            <div className="flex flex-row items-center text-sm mr-2 gap-x-[15px] lg:mr-[20px] md:gap-x-[50px] md:text-lg md:mr-4">
-                <NavLink to="/" className="font-bold text-blue-800 hover:underline hover:text-orange-500 hover:scale-105">INICIO</NavLink>
+        <a href="#principio" onClick={(e) => handleScroll(e, 'principio')}><img src={logo} alt="logo" className="w-[100px] h-2/3 ml-[20px] md:m-[20px] md:w-[250px]"/></a>
+        <div className="flex flex-row items-center text-sm mr-2 gap-x-[15px] lg:mr-[20px] md:gap-x-[50px] md:text-lg md:mr-4">
+                <a onClick={handleScrollToTop} className="font-bold text-blue-800 hover:cursor-pointer hover:underline hover:text-orange-500 hover:scale-105">INICIO</a>
                 <a href="#" className="font-bold text-orange-500 underline">CLIENTES</a>
             </div>
         </header>
 
         
-        <div className="relative w-full min-h-[100vh] bg-gray-200 mx-auto pt-[70px] md:pt-[140px] mb-10px">
+        <div className="relative w-full min-h-[100vh] bg-gray-200 mx-auto pt-[70px] md:pt-[140px] mb-10px" id="principio">
         <div className="w-11/12 flex flex-col mx-auto bg-white pt-10 rounded-xl border-2 border-blue-900">
                     <h2 className="text-3xl font-bold text-center text-blue-800 mb-2 md:mb-20 md:text-5xl">NUESTROS CLIENTES</h2>
                     <div className="flex flex-row flex-wrap gap-y-10 gap-x-2">

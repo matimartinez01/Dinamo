@@ -7,16 +7,18 @@ import Home from './pages/Home'
 import Galeria from './utils/Galeria'
 import { HashRouter } from 'react-router-dom'
 
+import { useRef, useEffect } from 'react'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   
-
   return (
     <>
     <HashRouter>
-    <Routes>
+    <Routes >
       <Route path="/" element={<Home />} />
       <Route path='/clientes' element={<Galeria/>}/>
     </Routes>

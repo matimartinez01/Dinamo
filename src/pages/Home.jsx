@@ -333,7 +333,7 @@ const Home = () => {
                         <div id="despachante" className="w-5/6 bg-orange-100 p-2 flex flex-col rounded-xl border-2 border-orange-700 shadow-lg shadow-orange-400 md:p-[15px] md:w-2/3 lg:w-1/3 lg:min-h-[854px] xl:w-1/4  xl:min-h-[832px] 2xl:w-1/5 2xl:min-h-[860px] 3xl:min-h-[700px]">
                         <div className="flex flex-col lg:gap-y-[10px] lg:min-h-[750px] xl:min-h-[726px] 2xl:min-h-[754px] 3xl:min-h-[610px]">
                             <h2 className="text-2xl font-bold text-center text-orange-700 md:text-3xl">Taller de Entrenamiento en Ventas</h2>
-                            <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“De Despachante y Vendedor”</p>
+                            <p className="text-center text-xl italic text-orange-700 font-semibold mb-[10px] md:text-2xl ">“De Despachante a Vendedor”</p>
                             <p className="text-justify md:text-lg font-semibold">En las PyMEs quienes ocupan puestos en ventas suelen ser personas con gran actitud, atentas y serviciales, pero
                             carecen de formación y entrenamiento para vender.</p>
                             <p className="text-justify md:text-lg font-semibold">El mercado se ha vuelta competitivo y los clientes exigentes y eso requiere manejar técnicas de ventas modernas,
